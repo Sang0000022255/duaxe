@@ -1,23 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Đua Xe</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giáng Sinh An Lành</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #1a237e, #0d47a1);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            animation: fall 10s linear infinite;
+            opacity: 0.8;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+        .tree {
+            position: relative;
+            width: 150px;
+            height: 300px;
+            background: green;
+            margin: 50px auto;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        .tree::before,
+        .tree::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: green;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        .tree::before {
+            width: 120px;
+            height: 240px;
+            top: -60px;
+        }
+        .tree::after {
+            width: 90px;
+            height: 180px;
+            top: -120px;
+        }
+        .star {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: yellow;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.5em;
+            animation: fadeIn 3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="game-container">
-    <h1>Game Đua Xe</h1>
-    <div id="game-area">
-      <canvas id="game-canvas"></canvas>
+    <div class="tree">
+        <div class="star"></div>
     </div>
-    <div id="score-board">
-      <h2>Bảng xếp hạng</h2>
-      <ol id="ranking-list"></ol>
+    <div class="message">
+        <p>🎄 Chúc bạn một mùa Giáng Sinh an lành và hạnh phúc! 🎅</p>
+        <p>💖 Cùng người thân yêu đón năm mới đầy niềm vui! ❄️</p>
     </div>
-    <button id="start-game">Bắt đầu chơi</button>
-  </div>
-  <script src="script.js"></script>
+
+    <!-- Tuyết rơi -->
+    <script>
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.textContent = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 7 + 's';
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 10000);
+        }
+        setInterval(createSnowflake, 200);
+    </script>
 </body>
 </html>
