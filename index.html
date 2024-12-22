@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giáng Sinh Lung Linh</title>
+    <title>Giáng Sinh Đầy Đủ</title>
     <style>
-        /* Nền lung linh */
+        /* Nền */
         body {
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle, #000428, #004e92);
+            background: radial-gradient(circle, #1a237e, #0d47a1);
             color: white;
             font-family: 'Arial', sans-serif;
             overflow: hidden;
@@ -32,26 +32,44 @@
             }
         }
 
-        /* Khu vực cây thông */
-        .tree {
+        /* Cảnh nền */
+        .scene {
             position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Mặt đất */
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to top, #fff, #cce7ff);
+        }
+
+        /* Cây thông */
+        .tree {
+            position: absolute;
+            bottom: 200px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 150px;
             height: 300px;
             background: #228b22;
-            margin: 50px auto;
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
             animation: swing 2s infinite alternate ease-in-out;
         }
         @keyframes swing {
             0% {
-                transform: rotate(-2deg);
+                transform: translateX(-50%) rotate(-2deg);
             }
             100% {
-                transform: rotate(2deg);
+                transform: translateX(-50%) rotate(2deg);
             }
         }
 
-        /* Các lớp cây thông */
         .tree::before,
         .tree::after {
             content: '';
@@ -72,47 +90,28 @@
             top: -120px;
         }
 
-        /* Trang trí ngôi sao */
-        .star {
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            background: gold;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            animation: glow 1s infinite alternate ease-in-out;
-        }
-        @keyframes glow {
-            0% {
-                box-shadow: 0 0 10px gold;
-            }
-            100% {
-                box-shadow: 0 0 20px yellow;
-            }
-        }
-
-        /* Đèn nhấp nháy */
+        /* Trang trí đèn trên cây */
         .lights {
             position: absolute;
-            top: 30px;
-            left: 10px;
-            width: 130px;
-            height: 250px;
+            top: 20%;
+            left: 20%;
+            display: flex;
+            flex-wrap: wrap;
+            width: 60%;
+            height: 60%;
         }
         .light {
-            position: absolute;
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background-color: red;
-            animation: twinkle 1s infinite alternate;
+            margin: 5px;
+            background: red;
+            animation: twinkle 1.5s infinite alternate;
         }
-        .light:nth-child(2) { left: 20%; top: 30%; background-color: blue; }
-        .light:nth-child(3) { left: 40%; top: 50%; background-color: yellow; }
-        .light:nth-child(4) { left: 60%; top: 70%; background-color: green; }
-        .light:nth-child(5) { left: 80%; top: 40%; background-color: purple; }
+        .light:nth-child(2) { background: yellow; }
+        .light:nth-child(3) { background: blue; }
+        .light:nth-child(4) { background: green; }
+        .light:nth-child(5) { background: orange; }
 
         @keyframes twinkle {
             0% {
@@ -123,11 +122,35 @@
             }
         }
 
+        /* Nhà gỗ */
+        .house {
+            position: absolute;
+            bottom: 200px;
+            left: 20%;
+            width: 150px;
+            height: 100px;
+            background: #8b4513;
+            border-radius: 5px;
+        }
+        .roof {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 50px;
+            background: #d2691e;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
         /* Lời chúc */
         .message {
+            position: absolute;
+            top: 20px;
+            width: 100%;
             text-align: center;
-            margin-top: 20px;
-            font-size: 1.5em;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px #000;
             animation: fadeIn 3s ease-in-out;
         }
         @keyframes fadeIn {
@@ -141,22 +164,31 @@
     </style>
 </head>
 <body>
-    <!-- Cây thông -->
-    <div class="tree">
-        <div class="star"></div>
-        <div class="lights">
-            <div class="light"></div>
-            <div class="light"></div>
-            <div class="light"></div>
-            <div class="light"></div>
-            <div class="light"></div>
+    <div class="scene">
+        <!-- Lời chúc -->
+        <div class="message">
+            ✨ Chúc Mừng Giáng Sinh 2024! 🎄<br>
+            ❄️ Chúc bạn một mùa Giáng Sinh an lành và tràn đầy yêu thương! 🎅
         </div>
-    </div>
 
-    <!-- Lời chúc -->
-    <div class="message">
-        <p>✨ Chúc bạn một mùa Giáng Sinh thật vui vẻ và đong đầy yêu thương! 🎄</p>
-        <p>💝 Mong mọi điều tốt đẹp sẽ đến trong năm mới sắp tới! ❄️</p>
+        <!-- Cây thông -->
+        <div class="tree">
+            <div class="lights">
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+            </div>
+        </div>
+
+        <!-- Nhà gỗ -->
+        <div class="house">
+            <div class="roof"></div>
+        </div>
+
+        <!-- Mặt đất -->
+        <div class="ground"></div>
     </div>
 
     <!-- Hiệu ứng tuyết rơi -->
