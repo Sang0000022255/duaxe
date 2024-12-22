@@ -3,155 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giáng Sinh Đầy Đủ</title>
+    <title>Chúc Mừng Giáng Sinh</title>
     <style>
-        /* Nền */
         body {
-            margin: 0;
-            padding: 0;
-            background: radial-gradient(circle, #1a237e, #0d47a1);
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1a237e, #0d47a1);
             color: white;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-        }
-
-        /* Tuyết rơi */
-        .snowflake {
-            position: fixed;
-            top: -10px;
-            animation: fall 10s linear infinite;
-            opacity: 0.8;
-            color: white;
-        }
-        @keyframes fall {
-            0% {
-                transform: translateY(-10px) rotate(0deg);
-            }
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-            }
-        }
-
-        /* Cảnh nền */
-        .scene {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* Mặt đất */
-        .ground {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(to top, #fff, #cce7ff);
-        }
-
-        /* Cây thông */
-        .tree {
-            position: absolute;
-            bottom: 200px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 300px;
-            background: #228b22;
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            animation: swing 2s infinite alternate ease-in-out;
-        }
-        @keyframes swing {
-            0% {
-                transform: translateX(-50%) rotate(-2deg);
-            }
-            100% {
-                transform: translateX(-50%) rotate(2deg);
-            }
-        }
-
-        .tree::before,
-        .tree::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #228b22;
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-        .tree::before {
-            width: 120px;
-            height: 240px;
-            top: -60px;
-        }
-        .tree::after {
-            width: 90px;
-            height: 180px;
-            top: -120px;
-        }
-
-        /* Trang trí đèn trên cây */
-        .lights {
-            position: absolute;
-            top: 20%;
-            left: 20%;
-            display: flex;
-            flex-wrap: wrap;
-            width: 60%;
-            height: 60%;
-        }
-        .light {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin: 5px;
-            background: red;
-            animation: twinkle 1.5s infinite alternate;
-        }
-        .light:nth-child(2) { background: yellow; }
-        .light:nth-child(3) { background: blue; }
-        .light:nth-child(4) { background: green; }
-        .light:nth-child(5) { background: orange; }
-
-        @keyframes twinkle {
-            0% {
-                opacity: 0.5;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        /* Nhà gỗ */
-        .house {
-            position: absolute;
-            bottom: 200px;
-            left: 20%;
-            width: 150px;
-            height: 100px;
-            background: #8b4513;
-            border-radius: 5px;
-        }
-        .roof {
-            position: absolute;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 50px;
-            background: #d2691e;
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-
-        /* Lời chúc */
-        .message {
-            position: absolute;
-            top: 20px;
-            width: 100%;
             text-align: center;
-            font-size: 2em;
-            text-shadow: 2px 2px 4px #000;
-            animation: fadeIn 3s ease-in-out;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        .message {
+            font-size: 1.5em;
+            margin: 20px 0;
+            animation: fadeIn 1s ease-in-out;
         }
         @keyframes fadeIn {
             from {
@@ -161,52 +29,63 @@
                 opacity: 1;
             }
         }
+        .btn {
+            background-color: #ff4081;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #f50057;
+        }
     </style>
 </head>
 <body>
-    <div class="scene">
-        <!-- Lời chúc -->
-        <div class="message">
-            ✨ Chúc Mừng Giáng Sinh 2024! 🎄<br>
-            ❄️ Chúc bạn một mùa Giáng Sinh an lành và tràn đầy yêu thương! 🎅
-        </div>
-
-        <!-- Cây thông -->
-        <div class="tree">
-            <div class="lights">
-                <div class="light"></div>
-                <div class="light"></div>
-                <div class="light"></div>
-                <div class="light"></div>
-                <div class="light"></div>
-            </div>
-        </div>
-
-        <!-- Nhà gỗ -->
-        <div class="house">
-            <div class="roof"></div>
-        </div>
-
-        <!-- Mặt đất -->
-        <div class="ground"></div>
+    <div class="container">
+        <h1>✨ Lời Chúc Mừng Giáng Sinh ✨</h1>
+        <p class="message" id="message">Nhấn nút để nhận một lời chúc đặc biệt!</p>
+        <button class="btn" onclick="generateMessage()">Hiển thị lời chúc</button>
     </div>
 
-    <!-- Hiệu ứng tuyết rơi -->
     <script>
-        function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            snowflake.textContent = '❄';
-            snowflake.style.left = Math.random() * 100 + 'vw';
-            snowflake.style.animationDuration = Math.random() * 3 + 7 + 's';
-            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
-            document.body.appendChild(snowflake);
+        const messages = [
+            "Chúc bạn một mùa Giáng Sinh tràn đầy yêu thương và hạnh phúc! 🎄",
+            "Mong bạn sẽ có một mùa đông ấm áp bên gia đình và người thân! ❄️",
+            "Chúc bạn và gia đình an lành, hạnh phúc suốt mùa lễ hội này! 🎅",
+            "Giáng Sinh vui vẻ! Hãy tận hưởng từng khoảnh khắc đáng nhớ! 🌟",
+            "Chúc cho mọi ước mơ của bạn sẽ trở thành hiện thực trong Giáng Sinh này! 🎁",
+            "Giáng Sinh là thời gian của yêu thương, hãy để trái tim bạn ngập tràn niềm vui! ❤️",
+            "Hy vọng rằng bạn sẽ nhận được thật nhiều niềm vui và sự bất ngờ trong mùa lễ hội này! 🎉",
+            "Chúc bạn một Giáng Sinh an lành, ấm áp, và đầy kỳ diệu! 🌟",
+            "Giáng Sinh là dịp để gần gũi với gia đình. Chúc bạn hạnh phúc bên những người thân yêu! 🏠",
+            "Hãy để mùa đông trở nên ấm áp hơn với tình yêu và sự sẻ chia! 💕",
+            "Chúc bạn nhận được nhiều niềm vui và những món quà bất ngờ! 🎁",
+            "Mong rằng Giáng Sinh này sẽ mang đến những điều tuyệt vời nhất cho bạn! ✨",
+            "Hãy tận hưởng Giáng Sinh theo cách mà bạn yêu thích nhất! 🌟",
+            "Chúc bạn luôn khỏe mạnh, hạnh phúc, và yêu đời trong mùa lễ hội! ❤️",
+            "Giáng Sinh là món quà tuyệt vời mà chúng ta có thể chia sẻ! Chúc bạn luôn tràn đầy niềm vui! 🎄",
+            "Hãy thắp sáng mùa đông này bằng nụ cười của bạn! 🌟",
+            "Chúc bạn nhận được thật nhiều tình yêu và sự quan tâm! 💖",
+            "Giáng Sinh vui vẻ, ấm áp bên những người thân yêu! 🎅",
+            "Chúc bạn có một mùa Giáng Sinh thật đặc biệt và đáng nhớ! ✨",
+            "Giáng Sinh an lành! Mong mọi điều tốt đẹp sẽ đến với bạn trong năm mới! 🌟",
+            // Thêm 80 lời chúc khác tại đây...
+            "Chúc bạn và gia đình một mùa Giáng Sinh ngập tràn hạnh phúc! 🎁",
+            "Hãy để mọi khó khăn tan biến, Giáng Sinh này chỉ còn lại niềm vui! ❄️",
+            "Chúc bạn luôn mỉm cười và tràn đầy hy vọng trong mùa lễ hội này! 🎉",
+            "Hãy để ánh sáng Giáng Sinh thắp sáng những ước mơ của bạn! 🌟",
+            "Giáng Sinh là thời gian để yêu thương và sẻ chia! Chúc bạn luôn hạnh phúc! 💕"
+        ];
 
-            setTimeout(() => {
-                snowflake.remove();
-            }, 10000);
+        function generateMessage() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            const messageElement = document.getElementById("message");
+            messageElement.textContent = messages[randomIndex];
         }
-        setInterval(createSnowflake, 150);
     </script>
 </body>
 </html>
